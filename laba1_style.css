@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat';
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  text-align: justify;
+  font-size: 1.1rem;
+  font-weight: 520;
+  color: black;
+}
+
+header {
+  color: black;
+  font-size: 1.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  text-align: center;
+  width: 45%;
+}
+
+th, td {
+  border: 1.5px solid black;
+  padding: 15px;
+}
+
+.advantages, .popular-dishes {
+  margin: 50px 0 30px 0;
+}
+
+.advantages ul {
+  padding: 0 0;
+}
+
+.main-menu {
+  margin: 45px 0;
+}
+
+.main-menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.main-menu li {  
+  display: inline;
+  margin-right: 20px;
+}
+
+.main-menu a {
+  color: black;
+  text-decoration: none;
+  font-weight: 530;
+}
+
+.main-menu a:hover {
+  color: red; 
+}
+
+.container {
+  max-width: 87%;
+  margin: 0 auto;
+}
+
+footer {
+  background-color: black;
+  color: white;
+  padding: 15px 40px;
+  margin: 30px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.main-image {
+  height: 600px;
+  width: auto;
+  margin: 50px 0 0 0;
+}
+
+.main-image > img {
+  height: 100%;
+}
