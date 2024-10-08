@@ -14,9 +14,18 @@ html, body {
   margin: 0;
 }
 
+.main-menu {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 150px;         
+}
+
+
 main {
   flex: 1;
 }
+
 
 header {
   color: black;
@@ -45,12 +54,6 @@ th, td {
   padding: 0 0;
 }
 
-.main-menu {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  gap: 15px;         
-}
 
 .main-menu ul {
   list-style: none;
@@ -109,10 +112,10 @@ footer {
   h1 {
     text-align: center;
   }
-  .main-menu {
+  .main-menu ul{
     flex-direction: column;
-    align-items: center; 
-    font-size: 1.75rem;    
+    text-align: center; 
+    font-size: 28px;    
   }
   .container img{
     width: 100%;
@@ -120,6 +123,17 @@ footer {
   table {
     font-size: 14px;
   }
+  .main-menu ul {
+    display: flex;
+    flex-direction: column; 
+    row-gap: 15px;
+    text-align: center;
+  }
+  .main-menu {
+    flex-direction: column; 
+    align-items: center; 
+    font-size: 1.75rem;
+}
 }
 
 @media (max-width: 400px) {

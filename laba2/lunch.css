@@ -11,6 +11,20 @@
     padding: 0 70px;
 }
 
+.oreder-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 0 0 50px 0;
+    padding: 0 70px;
+}
+
+.make-order h2{
+    font-size: 30px;
+    padding: 20px 70px;
+    text-align: center;
+}
+
 .dish {
     display: flex;
     flex-direction: column;
@@ -89,11 +103,6 @@ button {
     }
     .menu-section h2{
         text-align: center;    
-    }
-    .main-menu {
-        align-items: center; 
-        font-size: 1.75rem;
-        flex-direction: column; 
     }
     h1 {
         text-align: center;
