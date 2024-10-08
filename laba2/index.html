@@ -117,19 +117,69 @@
             </div>
         </section>
 
-        <!-- <section class="make-order">
+        <section class="make-order">
             <h2>Сделать заказ</h2>
-            <div class="order-grid">
+            <form action="https://httpbin.org/post" method="POST" class="order-grid">
                 <div class="your-order">
-                    <h3>Суп</h3>
-                    
+                    <p>Ваш заказ</p>
+                    <div class="choose-order">
+                        <label for="soup">Суп</label>
+                        <select name="soup" id="soup">
+                            <option>-- Выберите суп --</option>
+                            <option>Гаспачо</option>
+                            <option>Грибной суп-пюре</option>
+                            <option>Норвежский суп</option>
+                        </select>
+                        <label for="main-dish">Главное блюдо</label>
+                        <select name="main-dish" id="main-dish">
+                            <option>-- Выберите главное блюдо --</option>
+                            <option>Жареная картошка с грибами</option>
+                            <option>Лазанья</option>
+                            <option>Котлеты из курицы с картофельным пюре</option>
+                        </select>
+                        <label for="beverage">Напиток</label>
+                        <select name="beverage" id="beverage">
+                            <option>-- Выберите напиток --</option>
+                            <option>Апельсиновый сок</option>
+                            <option>Яблочный сок</option>
+                            <option>Морковный сок</option>
+                        </select>
+                        <label for="comments">Комментарии к заказу</label>
+                        <textarea id="comments" name="comments" rows="4"></textarea>
+                    </div>
                 </div>
 
-                <div class="tour-data">
-
+                <div class="your-data">
+                    <p>Ваши данные</p>
+                    <div class="choose-order">
+                        <label for="name">Имя</label>
+                        <input type="text" id="name" name="name" >
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email">
+                        <input type="checkbox" id="subscribe" name="subscribe" checked>
+                        <label for="subscribe">Получать информацию о скидках и акциях</label>
+                        <label for="phone">Номер телефона</label>
+                        <input type="tel" id="phone" name="phone" >
+                        <label for="address">Адрес доставки</label>
+                        <input type="text" id="address" name="address" >
+                        <p class="note">Доставка осуществляется только по Москве</p>
+                        <label>Время доставки</label>
+                        <div class="radio-container">
+                            <input type="radio" id="asap" name="delivery-time" value="asap">
+                            <label for="asap">Как можно скорее</label>
+                            <input type="radio" id="specific-time" name="delivery-time" value="specific-time">
+                            <label for="specific-time">К указанному времени</label>
+                        </div>
+                        <input type="time" id="time" name="time" min="07:00" max="23:00">
+                        <p class="note">Доступное время доставки с 7:00 до 23:00</p>
+                    </div>
+                    <div class="submit-reset">
+                        <button type="reset">Сбросить</button>
+                        <button type="submit">Отправить</button>
+                    </div>
                 </div>
-            </div>
-        </section> -->
+            </form>
+        </section>   
 
 
     </main>
