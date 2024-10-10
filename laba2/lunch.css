@@ -11,14 +11,6 @@
     padding: 0 70px;
 }
 
-.oreder-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin: 0 0 50px 0;
-    padding: 0 70px;
-}
-
 .dish {
     display: flex;
     flex-direction: column;
@@ -80,50 +72,6 @@ button {
     background-color: #f0f0f0;
     cursor: pointer;
     font-size: 14px;
-}
-
-.order-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 50px;
-    align-items: start;
-    padding: 10px 100px;
-}
-
-.make-order h2{
-    font-size: 30px;
-
-    text-align: center;
-}
-
-.make-order p{
-    font-size: 20px;
-    direction: normal;
-}
-
-.your-order .your-data{
-    display: flex;
-    flex-direction: column;
-    row-gap: 20px;
-}
-
-.choose-order {
-    display: flex;
-    flex-direction: column;
-    row-gap: 20px;
-}
-
-label {
-    display: block;
-}
-
-.radio-container {
-    display: block; /* Оставляем контейнер блочным */
-}
-
-.radio-container input[type="radio"],
-.radio-container label {
-    display: inline-block; /* Радиокнопка и текст на одной линии */
 }
 
 @media (max-width: 800px) {
