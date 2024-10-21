@@ -130,10 +130,11 @@ section.make-order {
     margin-left: 8px;
 }
 
-.radio-container {
+fieldset {
     display: flex;
     flex-direction: column;
     margin: 10px 0 15px 0;
+    border: none;
 }
 
 input[type="time"] {
