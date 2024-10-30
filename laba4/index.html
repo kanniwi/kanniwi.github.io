@@ -54,31 +54,17 @@
             <h2>Сделать заказ</h2>
             <form action="https://httpbin.org/post" method="POST" class="order-grid">
                 <div class="your-order">
-                    <p>Ваш заказ</p>
-                    <p id="no-selection-message">Ничего не выбрано</p>
-                            <label class="hidden" for="soup">Суп</label>
-                            <select class="hidden" name="soup" id="soup" required>
-                                <option value="" disabled selected>-- Выберите суп --</option>
-                                <option value="gazpacho">Гаспачо</option>
-                                <option value="mushroomSoup">Грибной суп-пюре</option>
-                                <option value="norwegianSoup">Норвежский суп</option>
-                            </select>                        
-                            <label class="hidden" for="main-dish">Главное блюдо</label>
-                            <select class="hidden" name="main-dish" id="main-dish" required>
-                                <option value="" disabled selected>-- Выберите главное блюдо --</option>
-                                <option value="friedPotatoes">Жареная картошка с грибами</option>
-                                <option value="lasagna">Лазанья</option>
-                                <option value="chickenCutlets">Котлеты из курицы с картофельным пюре</option>
-                            </select>                        
-                            <label class="hidden" for="beverage">Напиток</label>
-                            <select class="hidden" name="beverage" id="beverage" required>
-                                <option value="" disabled selected>-- Выберите напиток --</option>
-                                <option value="orangeJuice">Апельсиновый сок</option>
-                                <option value="appleJuice">Яблочный сок</option>
-                                <option value="carrotJuice">Морковный сок</option>
-                            </select>                       
-                        <label for="comments">Комментарии к заказу</label>
-                        <textarea id="comments" name="comments" rows="4"></textarea>
+                    <p class="title">Ваш заказ</p>
+                    <p id="no-selection-message" class="title">Ничего не выбрано</p>
+                    <p class="hidden title">Суп</p>
+                    <p id="soup-item" class="hidden"><span class="order-item"></span></p>
+                    <p class="hidden title">Главное блюдо</p>
+                    <p id="main-item" class="hidden"><span class="order-item"></span></p>
+                    <p class="hidden title">Напиток</p>
+                    <p id="beverage-item" class="hidden"><span class="order-item"></span></p>
+                    <p id="total-cost" class="title hidden">Стоимость заказа</p>
+                    <label for="comments">Комментарии к заказу</label>
+                    <textarea id="comments" name="comments" rows="4"></textarea>
                 </div>
 
                 <div class="your-data">
@@ -128,7 +114,8 @@
             </p>
         </div>
     </footer>
-    <script src="/laba4/order,js"></script>
-    <script src="/laba4/laba4.js"></script>
+    <script src="/laba4/dishes.js"></script>
+    <script src="/laba4/addToIndex.js"></script>
+    <script src="/laba4/addToOrder.js"></script>
 </body>
 </html>
