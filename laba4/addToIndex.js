@@ -24,6 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 dishElement.addEventListener('click', addDishToOrder);
             });
         });
+
+        const resetButton = document.querySelector('button[type="reset"]');
+        resetButton.addEventListener('click', resetAllData);
     }
+
     displayDishes();
 });

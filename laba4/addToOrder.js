@@ -77,6 +77,35 @@ function addDishToOrder(event) {
     if (beverageItem.querySelector('.order-item').textContent.trim() === "") {
         beverageItem.querySelector('.order-item').textContent = "Напиток не выбран";
     }
+};
+
+function resetAllData(event) {    
+    document.querySelectorAll('.your-order p.notRemove').forEach(header => {
+        header.classList.add('hidden');
+    });
+
+    noSelectionMessage.classList.remove('hidden');
+
+    document.getElementById('soup-item').querySelector('.order-item').textContent = "Блюдо не выбрано";
+    document.getElementById('main-item').querySelector('.order-item').textContent = "Блюдо не выбрано";
+    document.getElementById('beverage-item').querySelector('.order-item').textContent = "Напиток не выбран";
+
+    if (selectedSoup) {
+        selectedSoup.style.borderColor = '';
+    }
+    if (selectedMain) {
+        selectedMain.style.borderColor = '';
+    }
+    if (selectedBeverage) {
+        selectedBeverage.style.borderColor = '';
+    }
+
+    document.getElementById('soup-item').dataset.price = "0";
+    document.getElementById('main-item').dataset.price = "0";
+    document.getElementById('beverage-item').dataset.price = "0";
+
+    totalCost = 0;
+    totalCostElement.innerText = `Стоимость заказа: ${totalCost}₽`;
 }
 
 
