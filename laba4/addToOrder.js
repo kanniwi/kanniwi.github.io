@@ -10,8 +10,6 @@ function addDishToOrder(event) {
     const dishElement = event.target.closest('.dish'); 
     const dishKeyword = dishElement.dataset.dish; 
     const selectedDish = dishes.find(dish => dish.keyword === dishKeyword); 
-
-
     let orderItem;
     if (selectedDish.category === 'soup') {
         orderItem = document.getElementById('soup-item');
