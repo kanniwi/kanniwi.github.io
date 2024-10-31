@@ -50,7 +50,8 @@ function addDishToOrder(event) {
 
 
     const previousDishPrice = parseFloat(orderItem.dataset.price) || 0;
-    orderItem.querySelector('.order-item').textContent = `${selectedDish.name} - ${selectedDish.price}₽`;
+    orderItem.querySelector('.order-item')
+        .textContent = `${selectedDish.name} - ${selectedDish.price}₽`;
     orderItem.dataset.price = selectedDish.price; 
 
 
@@ -73,7 +74,8 @@ function addDishToOrder(event) {
         mainItem.querySelector('.order-item').textContent = "Блюдо не выбрано";
     }
     if (beverageItem.querySelector('.order-item').textContent.trim() === "") {
-        beverageItem.querySelector('.order-item').textContent = "Напиток не выбран";
+        beverageItem.querySelector('.order-item')
+            .textContent = "Напиток не выбран";
     }
 };
 
@@ -84,9 +86,12 @@ function resetAllData(event) {
 
     noSelectionMessage.classList.remove('hidden');
 
-    document.getElementById('soup-item').querySelector('.order-item').textContent = "Блюдо не выбрано";
-    document.getElementById('main-item').querySelector('.order-item').textContent = "Блюдо не выбрано";
-    document.getElementById('beverage-item').querySelector('.order-item').textContent = "Напиток не выбран";
+    document.getElementById('soup-item').
+        querySelector('.order-item').textContent = "Блюдо не выбрано";
+    document.getElementById('main-item')
+        .querySelector('.order-item').textContent = "Блюдо не выбрано";
+    document.getElementById('beverage-item')
+        .querySelector('.order-item').textContent = "Напиток не выбран";
 
     if (selectedSoup) {
         selectedSoup.style.borderColor = '';
@@ -105,6 +110,3 @@ function resetAllData(event) {
     totalCost = 0;
     totalCostElement.innerText = `Стоимость заказа: ${totalCost}₽`;
 }
-
-
-
