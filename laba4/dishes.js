@@ -5,7 +5,7 @@ const dishes = [
         price: 195,
         category: "soup",
         count: "350 г",
-        image: "/images/gazpacho.jpg"
+        image: "/images/soups/gazpacho.jpg"
     },
     {
         keyword: "mushroomSoup",
@@ -13,7 +13,7 @@ const dishes = [
         price: 185,
         category: "soup",
         count: "330 г",
-        image: "/images/mushroom_soup.jpg"
+        image: "/images/soups/mushroom_soup.jpg"
     },
     {
         keyword: "norwegianSoup",
@@ -21,7 +21,7 @@ const dishes = [
         price: 270,
         category: "soup",
         count: "330 г",
-        image: "/images/norwegian_soup.jpg"
+        image: "/images/soups/norwegian_soup.jpg"
     },
     {
         keyword: "friedPotatoes",
@@ -29,7 +29,7 @@ const dishes = [
         price: 150,
         category: "main",
         count: "250 г",
-        image: "/images/friedpotatoeswithmushrooms1.jpg"
+        image: "/images/main_course/friedpotatoeswithmushrooms1.jpg"
     },
     {
         keyword: "lasagna",
@@ -37,7 +37,7 @@ const dishes = [
         price: 385,
         category: "main",
         count: "310 г",
-        image: "/images/lasagna.jpg"
+        image: "/images/main_course/lasagna.jpg"
     },
     {
         keyword: "chickenCutlets",
@@ -45,7 +45,7 @@ const dishes = [
         price: 225,
         category: "main",
         count: "280 г",
-        image: "/images/chickencutletsandmashedpotatoes.jpg"
+        image: "/images/main_course/chickencutletsandmashedpotatoes.jpg"
     },
     {
         keyword: "orangeJuice",
@@ -53,7 +53,7 @@ const dishes = [
         price: 120,
         category: "beverage",
         count: "300 мл",
-        image: "/images/orangejuice.jpg"
+        image: "/images/beverages/orangejuice.jpg"
     },
     {
         keyword: "appleJuice",
@@ -61,7 +61,7 @@ const dishes = [
         price: 90,
         category: "beverage",
         count: "300 мл",
-        image: "/images/applejuice.jpg"
+        image: "/images/beverages/applejuice.jpg"
     },
     {
         keyword: "carrotJuice",
@@ -69,6 +69,6 @@ const dishes = [
         price: 110,
         category: "beverage",
         count: "300 мл",
-        image: "/images/carrotjuice.jpg"
+        image: "/images/beverages/carrotjuice.jpg"
     }
 ];

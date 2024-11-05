@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>food construct</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="../laba1_style.css">
+        <link rel="stylesheet" href="style_laba4.css">
+    
+    </head>
+<body>
+    <header>
+        <div>
+            <h1>
+                Food Construct
+            </h1>
+            <nav class="main-menu">
+                <ul>
+                    <li><a href="https://kanniwi.github.io/index.html">О нас</a></li>
+                    <li class="active"><a href="#" >Собрать ланч</a></li>
+                    <li><a href="#">Заказы</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="menu-section">
+            <h2>Выберите суп</h2>
+            <div class="menu-category">
+                <button>рыбный</button>
+                <button>мясной</button>
+                <button>вегетарианский</button>                
+            </div>
+            <div class="grid-container soup">                
+            </div>
+        </section>
+
+        <section class="menu-section">
+            <h2>Выберите главное блюдо</h2>
+            <div class="menu-category">
+                <button>рыбное</button>
+                <button>мясное</button>
+                <button>вегетарианское</button>                
+            </div>
+            <div class="grid-container main">                
+            </div>
+        </section>
+
+        <section class="menu-section">
+            <h2>Выберите салат или стартер</h2>
+            <div class="menu-category">
+                <button>рыбный</button>
+                <button>мясной</button>
+                <button>вегетарианский</button>                
+            </div>
+            <div class="grid-container salad">                
+            </div>
+        </section>
+
+        <section class="menu-section">
+            <h2>Выберите напиток</h2>
+            <div class="menu-category">
+                <button>холодный</button>
+                <button>горячий</button>               
+            </div>
+            <div class="grid-container beverage">                
+            </div>
+        </section>
+
+        <section class="menu-section">
+            <h2>Выберите десерт</h2>
+            <div class="menu-category">
+                <button>маленькая порция</button>
+                <button>средняя порция</button>
+                <button>большая порция</button>                
+            </div>
+            <div class="grid-container desserts">                
+            </div>
+        </section>
+
+        <section class="make-order">
+            <h2>Сделать заказ</h2>
+            <form action="https://httpbin.org/post" method="POST" class="order-grid">
+                <div class="your-order">
+                    <p class="title">Ваш заказ</p>
+                    <p id="no-selection-message" class="title notRemove">Ничего не выбрано</p>
+                    <p class="hidden title notRemove">Суп</p>
+                    <p id="soup-item" class="hidden notRemove"><span class="order-item"></span></p>
+
+                    <p class="hidden title notRemove">Главное блюдо</p>
+                    <p id="main-item" class="hidden notRemove"><span class="order-item"></span></p>
+
+                    <p class="hidden title notRemove">Салат/стартер</p>
+                    <p id="salad-item" class="hidden notRemove"><span class="order-item"></span></p>
+
+                    <p class="hidden title notRemove">Напиток</p>
+                    <p id="beverage-item" class="hidden notRemove"><span class="order-item"></span></p>
+
+                    <p class="hidden title notRemove">Десерт</p>
+                    <p id="desserts-item" class="hidden notRemove"><span class="order-item"></span></p>
+
+                    <p id="total-cost" class="title hidden notRemove">Стоимость заказа</p>
+                    <label for="comments">Комментарии к заказу</label>
+                    <textarea id="comments" name="comments" rows="4"></textarea>
+                </div>
+
+                <div class="your-data">
+                    <p>Ваши данные</p>
+                        <label for="name">Имя</label>
+                        <input type="text" id="name" name="name" required>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="choose-group">
+                            <input type="checkbox" id="subscribe" name="subscribe" checked>
+                            <label for="subscribe">Получать информацию о скидках и акциях</label>
+                        </div>                     
+                        <label for="phone">Номер телефона</label>
+                        <input type="tel" id="phone" name="phone" required>
+                        <label for="address">Адрес доставки</label>
+                        <input type="text" id="address" name="address" required>
+                        <p class="note">Доставка осуществляется только по Москве</p>
+                        <fieldset>
+                            <legend>Время доставки</legend>
+                            <div>
+                                <input type="radio" id="asap" name="delivery-time" value="asap" required>
+                                <label for="asap">Как можно скорее</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="specific-time" name="delivery-time" value="specific-time">
+                                <label for="specific-time">К указанному времени</label>
+                            </div>
+                        </fieldset>
+                        <label class="time-delivery">Выберете время доставки</label>
+                        <input type="time" id="time" name="time" min="07:00" max="23:00" step="300">
+                        <p class="note">Доступное время доставки с 7:00 до 23:00</p>
+                    <div class="submit-reset">
+                        <button type="reset">Сбросить</button>
+                        <button type="submit">Отправить</button>
+                    </div>
+                </div>
+            </form>
+        </section>   
+
+
+    </main>
+
+    <footer id="contacts">
+        <div class="container">
+            <p>
+                <a>Позвони нам +7-000-000-00-00</a>
+            </p>
+        </div>
+    </footer>
+    <script src="/laba5/dishes.js"></script>
+    <script src="/laba5/addToIndex.js"></script>
+    <script src="/laba5/filter.js"></script>
+    <script src="/laba5/addToOrder.js"></script>
+</body>
+</html>

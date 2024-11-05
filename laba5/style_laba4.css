@@ -1,0 +1,250 @@
+.menu-section h2 {
+    font-size: 30px;
+    padding: 20px 70px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 0 0 50px 0;
+    padding: 0 70px;
+}
+
+.oreder-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 0 0 50px 0;
+    padding: 0 70px;
+}
+
+.dish {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; 
+    background-color: #fff;
+    border-radius: 35px;
+    filter: drop-shadow(17px 19px 24px rgba(0, 0, 0, 0.13));
+    padding: 30px 40px;
+    border: 2px solid transparent;
+    transition: border 0.15s ease;
+    cursor: pointer;
+}
+
+.dish:hover {
+    border-color: tomato;
+}
+
+.dish button {
+    padding: 10px 30px;
+    background-color: #f1eee9;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.15s ease;
+}
+
+.dish:hover button {
+    background-color: #d7d7d7;
+}
+
+section > div > div > img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 35px;
+}
+
+section > div > div > p:nth-child(2) {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+section > div > div > p:nth-child(3) {
+    font-size: 16px; 
+    margin-top: 5px; 
+    flex-grow: 1;
+}
+
+section > div > div > p:nth-child(4) {
+    color: grey; 
+    font-size: 16px; 
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.make-order h2{
+    text-align: center;
+}
+
+section.make-order {
+    margin: 20px;
+}
+  
+.order-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    gap: 100px; 
+    margin: 10px 300px;
+}
+
+.your-order, .your-data {
+    display: flex;
+    flex-direction: column;
+}
+
+.your-order .title, .your-data p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.your-order label, .your-data label {
+    margin-bottom: 0px;
+    font-size: 14px;
+}
+
+.your-order select, .your-data input, .your-data select, .your-order textarea {
+    margin-bottom: 15px;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.choose-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.choose-group label {
+    margin-left: 8px;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0 15px 0;
+    border: none;
+}
+
+input[type="time"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+input[type="checkbox"] {
+    margin: 0;
+}
+
+input#address {
+    margin: 0;
+}
+
+p.note {
+    font-size: 12px;
+    color: #000000;
+    margin-bottom: 10px;
+    font-weight: 520;
+}
+
+.submit-reset {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+label.time-delivery {
+    margin: 0 0 10px 0;
+}
+
+.your-data button {
+    background-color: white;
+    color: #000000;
+    font-weight: 450;
+    margin-bottom: 15px;
+    padding: 8px;
+    font-size: 14px;
+    width: 100%;
+    border: 1px solid #727171;
+    border-radius: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.menu-category {
+    display: flex;
+    justify-content: flex-start;
+    gap: 25px;
+    padding: 0 0 25px 70px;
+}
+
+.menu-category button{
+    color: green;
+    font-size: 18px;
+    background-color: transparent;
+    border-radius: 13px;
+    padding: 7px 7px;
+}
+
+.menu-category button:hover {
+    cursor: pointer;
+    background-color: rgb(203, 236, 203);
+}
+
+.active {
+    background-color: rgb(203, 236, 203);
+}
+
+
+@media (max-width: 800px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    nav {
+        justify-content: space-between;
+    }
+    
+}
+
+@media (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+    .menu-section h2{
+        text-align: center;    
+    }
+    h1 {
+        text-align: center;
+    }
+
+  }
+
+  @media (max-width: 1000px) {
+    .order-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 100px; 
+        margin: 30px;
+    }
+
+  }
