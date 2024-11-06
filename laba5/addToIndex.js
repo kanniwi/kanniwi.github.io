@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const activeFilters = {};
     function displayDishes() {
         const categories = ["soup", "main", "salad", "beverage", "desserts"];
         let container;
@@ -7,10 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const filteredDishes = dishes
                 .filter(dish => dish.category === category)
                 .sort((a, b) => a.name.localeCompare(b.name));
+            
             filteredDishes.forEach(dish => {
                 const dishElement = document.createElement('div');
                 dishElement.classList.add('dish');
                 dishElement.dataset.dish = dish.keyword; 
+                dishElement.dataset.kind = dish.kind;
                 dishElement.innerHTML =
                     `<img src="${dish.image}" alt="${dish.name}">
                     <p>${dish.price}₽</p>
@@ -23,9 +26,56 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         const resetButton = document.querySelector('button[type="reset"]');
         resetButton.addEventListener('click', resetAllData);
-
-        const menuSection = document.querySelectorAll('.menu-category');
-        
     }
+
+    function filterDishesByKind(category, kind, button) {
+        const dishesInCategory = document
+            .querySelectorAll(`.grid-container.${category} .dish`);
+        
+        if (activeFilters[category] === kind) {
+            activeFilters[category] = null;
+            dishesInCategory.forEach(dish => dish.classList.remove('hidden'));
+            button.classList.remove('active-category');
+        } else {
+            activeFilters[category] = kind;
+            dishesInCategory.forEach(dish => {
+                if (dish.dataset.kind === kind) {
+                    dish.classList.remove('hidden');
+                } else {
+                    dish.classList.add('hidden');
+                }
+            });
+            const categoryButtons = button.parentElement
+                .querySelectorAll('button');
+            categoryButtons
+                .forEach(btn => btn.classList.remove('active-category'));
+            button.classList.add('active-category');
+        }
+    }
+
+    const filterButtons = document.querySelectorAll('.menu-category button');
+    filterButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            const selectedKind = event.target.innerText;
+            const kindMap = {
+                "вегетарианское": "veg",
+                "вегетарианский": "veg",
+                "мясное": "meat",
+                "мясной": "meat",
+                "рыбное": "fish",
+                "рыбный": "fish",
+                "холодный": "cold",
+                "горячий": "hot",
+                "маленькая порция": "small",
+                "средняя порция": "average",
+                "большая порция": "big"
+            };
+            const category = event.target.closest('.menu-section')
+                .querySelector('.grid-container').classList[1];
+            
+            filterDishesByKind(category, kindMap[selectedKind], event.target);
+        });
+    });
+
     displayDishes();
 });

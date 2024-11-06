@@ -147,4 +147,6 @@ function resetAllData(event) {
 
     totalCost = 0;
     totalCostElement.innerText = `Стоимость заказа: ${totalCost}₽`;
+
+    
 }
