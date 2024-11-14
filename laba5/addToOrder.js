@@ -150,3 +150,19 @@ function resetAllData(event) {
 
     
 }
+
+document.querySelector('form').addEventListener('submit', function(event) {
+    const soupKeyword = selectedSoup ? selectedSoup.dataset.dish : "";
+    const mainKeyword = selectedMain ? selectedMain.dataset.dish : "";
+    const saladKeyword = selectedSalad ? selectedSalad.dataset.dish : "";
+    const beverageKeyword = selectedBeverage ? 
+        selectedBeverage.dataset.dish : "";
+    const dessertKeyword = selectedDesserts ? 
+        selectedDesserts.dataset.dish : "";
+
+    document.getElementById('hidden-soup-keyword').value = soupKeyword;
+    document.getElementById('hidden-main-keyword').value = mainKeyword;
+    document.getElementById('hidden-salad-keyword').value = saladKeyword;
+    document.getElementById('hidden-beverage-keyword').value = beverageKeyword;
+    document.getElementById('hidden-dessert-keyword').value = dessertKeyword;
+});
