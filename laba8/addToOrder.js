@@ -17,44 +17,53 @@ function addDishToOrder(event) {
         orderItem = selectedSoup;
         if (selectedSoup) {
             selectedSoup.style.borderColor = '';
-            previousDishPrice = parseFloat(selectedSoup.dataset.price) || 0;
+            localStorage.removeItem('selectedSoup');
         }
         selectedSoup = dishElement;
+        localStorage.setItem('selectedSoup', selectedSoup.dataset.id);
     } else if (selectedDish.category === 'main-course') {
         orderItem = selectedMain;
         if (selectedMain) {
             selectedMain.style.borderColor = '';
-            previousDishPrice = parseFloat(selectedMain.dataset.price) || 0;
+            localStorage.removeItem('selectedMain');
         }
         selectedMain = dishElement;
+        localStorage.setItem('selectedMain', selectedMain.dataset.id);
     } else if (selectedDish.category === 'drink') {
         orderItem = selectedBeverage;
         if (selectedBeverage) {
             selectedBeverage.style.borderColor = '';
-            previousDishPrice = parseFloat(selectedBeverage.dataset.price) || 0;
+            localStorage.removeItem('selectedBeverage');
         }
         selectedBeverage = dishElement;
+        localStorage.setItem('selectedBeverage', selectedBeverage.dataset.id);
     } else if (selectedDish.category === 'dessert') {
         orderItem = selectedDesserts;        
         if (selectedDesserts) {
             selectedDesserts.style.borderColor = '';
-            previousDishPrice = parseFloat(selectedDesserts.dataset.price) || 0;
+            localStorage.removeItem('selectedDesserts');
         }
         selectedDesserts = dishElement;
+        localStorage.setItem('selectedDesserts', selectedDesserts.dataset.id);
     } else if (selectedDish.category === 'salad') {
         orderItem = selectedSalad;        
         if (selectedSalad) {
             selectedSalad.style.borderColor = '';
-            previousDishPrice = parseFloat(selectedSalad.dataset.price) || 0;
+            localStorage.removeItem('selectedSalad');
         }
         selectedSalad = dishElement;
+        localStorage.setItem('selectedSalad', selectedSalad.dataset.id);
+        
     }
 
     dishElement.style.borderColor = 'tomato'; 
     dishElement.dataset.price = selectedDish.price;
-
+    if (orderItem !== null) {
+        previousDishPrice = orderItem.price || 0;
+    }
     totalCost += (selectedDish.price - previousDishPrice);
 
     totalCostElement.innerText = `${totalCost}₽`;
+    console.log(totalCost);
 
 }
