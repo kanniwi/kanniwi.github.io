@@ -21,7 +21,7 @@ function addDishToOrder(event) {
             selectedSoup.style.borderColor = '';
         }
         selectedSoup = dishElement; 
-    } else if (selectedDish.category === 'main') {
+    } else if (selectedDish.category === 'main-course') {
         orderItem = document.getElementById('main-item');
         
 
@@ -29,7 +29,7 @@ function addDishToOrder(event) {
             selectedMain.style.borderColor = ''; 
         }
         selectedMain = dishElement; 
-    } else if (selectedDish.category === 'beverage') {
+    } else if (selectedDish.category === 'drink') {
         orderItem = document.getElementById('beverage-item');
         
 
@@ -37,7 +37,7 @@ function addDishToOrder(event) {
             selectedBeverage.style.borderColor = ''; 
         }
         selectedBeverage = dishElement; 
-    } else if (selectedDish.category === 'desserts') {
+    } else if (selectedDish.category === 'dessert') {
         orderItem = document.getElementById('desserts-item');        
 
         if (selectedDesserts) {

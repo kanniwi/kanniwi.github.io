@@ -1,3 +1,5 @@
+const API_URL = "https://edu.std-900.ist.mospolytech.ru/labs/api/dishes"; 
+const API_KEY = "7630fae5-737b-4cae-b85d-b7d7c246a48b";
 let dishes = []; 
 const activeFilters = {};
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 dishElement.classList.add('dish');
                 dishElement.dataset.dish = dish.keyword;
                 dishElement.dataset.kind = dish.kind;
+                dishElement.dataset.id = dish.id;
+                dishElement.price = dish.price;
                 dishElement.innerHTML =
                     `<img src="${dish.image}" alt="${dish.name}">
                     <p>${dish.price}₽</p>
@@ -31,9 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
         });
-
-        const resetButton = document.querySelector('button[type="reset"]');
-        resetButton.addEventListener('click', resetAllData);
     }
 
     function filterDishesByKind(category, kind, button) {
@@ -88,13 +89,13 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadDishes() {
         try {
             const response = await 
-            fetch('https://edu.std-900.ist.mospolytech.ru/labs/api/dishes');
+            fetch(API_URL);
             if (!response.ok) {
                 throw new 
                 Error('Ошибка загрузки данных: ' + response.statusText);
             }
             dishes = await response.json();
-            console.log(dishes);
+            // console.log(dishes);
             displayDishes(); 
         } catch (error) {
             console.error('Ошибка загрузки блюд:', error);
@@ -103,6 +104,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     loadDishes(); 
-
-    
+   
 });
