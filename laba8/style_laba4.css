@@ -1,4 +1,4 @@
-.menu-section h2, .all-combo h2 {
+.menu-section h2, .all-combo h2, .order-composition h2 {
     font-size: 30px;
     padding: 20px 70px;
 }
@@ -273,16 +273,27 @@ button.active-category{
 }
 .total-cost {
     position: sticky;
-    padding: 0 50px;
+    padding: 12px 50px;
     bottom: 0;
     background-color: white;
     background-color: rgba(255, 255, 255, 0.5);
-
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
 }
 
-.total-cost p{
+.total-cost p {
     font-size: 23px;
+    margin: 0;
 }
+
+.total-cost button {
+    margin-left: auto; 
+    border-radius: 10px;
+    width: 300px;
+    font-weight: 500;
+}
+
 
 #close-notification {
     border: solid 1px;
