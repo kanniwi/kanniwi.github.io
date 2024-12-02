@@ -2,6 +2,45 @@ const API_URL = "https://edu.std-900.ist.mospolytech.ru/labs/api/dishes";
 const API_KEY = "7630fae5-737b-4cae-b85d-b7d7c246a48b";
 let dishes = []; 
 
+// Функция для удаления блюда из localStorage
+function removeDishFromOrder(key, dishId) {
+    localStorage.removeItem(key); // удаляем элемент из localStorage
+}
+
+// Функция для удаления блюда из секции "Ваш заказ"
+function removeDishFromOrderSection(elementId, dishId) {
+    const orderItem = document.getElementById(elementId);
+    if (orderItem) {
+        // Очищаем информацию о блюде в секции "Ваш заказ"
+        orderItem.querySelector('.order-item').textContent = '';
+        orderItem.dataset.price = '';
+    }
+}
+
+// Функция для обновления итоговой стоимости
+function updateTotalCost() {
+    let totalCost = 0;
+    const categories = [
+        'selectedSoup', 'selectedMain-course', 
+        'selectedSalad', 'selectedDrink', 'selectedDessert'
+    ];
+    
+    categories.forEach(category => {
+        const dishId = localStorage.getItem(category);
+        if (dishId) {
+            const selectedDish = dishes
+                .find(dish => dish.id === Number(dishId));
+            if (selectedDish) {
+                totalCost += selectedDish.price;
+            }
+        }
+    });
+
+    const totalCostElement = document.getElementById('total-cost');
+    totalCostElement.textContent = `Стоимость заказа: ${totalCost}₽`;
+}
+
+
 function displayOrderFromLocalStorage() {
     if (!dishes || dishes.length === 0) {
         console.error('Блюда еще не загружены.');
@@ -44,32 +83,41 @@ function displayOrderFromLocalStorage() {
                 dishElement.dataset.id = selectedDish.id;
                 dishElement.price = selectedDish.price;
     
-                dishElement.innerHTML = `
+                dishElement.innerHTML = ` 
                     <img src="${selectedDish.image}" alt="${selectedDish.name}">
                     <p>${selectedDish.price}₽</p>
                     <p>${selectedDish.name}</p>
                     <p>${selectedDish.count || 0}</p>
-                    <button>Удалить</button>
+                    <button class="remove-dish-button">Удалить</button>
                 `;
 
                 gridContainer.appendChild(dishElement);
-    
+
+
+                dishElement.querySelector('.remove-dish-button')
+                    .addEventListener('click', function () {
+                        removeDishFromOrder(category.key, selectedDish.id);
+                        dishElement.remove(); // удаляем блюдо из DOM
+                        removeDishFromOrderSection(category.elementId, 
+                            selectedDish.id);
+                        updateTotalCost(); // обновляем итоговую стоимость
+                    });
+
                 // обновляем секцию ваш заказ
                 const orderItem = document.getElementById(category.elementId);
                 orderItem.querySelector('.order-item').textContent = 
-                `${selectedDish.name} - ${selectedDish.price}₽`;
+                    `${selectedDish.name} - ${selectedDish.price}₽`;
                 orderItem.dataset.price = selectedDish.price;
                 
                 document.querySelectorAll('.your-order p.hidden')
                     .forEach(header => {
                         header.classList.remove('hidden');
                     });
-    
+
                 totalCost += selectedDish.price;
             }
         }
     });
-    
 
     if (hasSelection) {
         noSelectionMessage.classList.add('hidden');
@@ -80,6 +128,7 @@ function displayOrderFromLocalStorage() {
         totalCostElement.classList.add('hidden');
     }
 }
+
 
 async function loadDishes() {
     try {
@@ -182,7 +231,6 @@ document.querySelector('form').addEventListener('submit', function (event) {
         return;
     }
 
-    // Если все проверки пройдены, сохраняем данные в скрытые поля формы
     document.getElementById('hidden-soup-keyword').value = soupId || '';
     document.getElementById('hidden-main-keyword').value = mainId || '';
     document.getElementById('hidden-salad-keyword').value = saladId || '';
