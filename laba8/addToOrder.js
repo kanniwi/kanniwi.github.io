@@ -64,6 +64,4 @@ function addDishToOrder(event) {
     totalCost += (selectedDish.price - previousDishPrice);
     document.querySelector('.total-cost').classList.remove('hidden');
     totalCostElement.innerText = `${totalCost}₽`;
-    console.log(totalCost);
-
 }
