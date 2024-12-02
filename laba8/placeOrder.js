@@ -49,7 +49,7 @@ function displayOrderFromLocalStorage() {
                     <p>${selectedDish.price}₽</p>
                     <p>${selectedDish.name}</p>
                     <p>${selectedDish.count || 0}</p>
-                    <button>Добавить</button>
+                    <button>Удалить</button>
                 `;
 
                 gridContainer.appendChild(dishElement);
@@ -83,12 +83,19 @@ function displayOrderFromLocalStorage() {
 
 async function loadDishes() {
     try {
-        const response = await fetch(API_URL);
+        const urlWithApiKey = `${API_URL}?api_key=${API_KEY}`;
+            
+        const response = await fetch(urlWithApiKey);
+
         if (!response.ok) {
-            throw new Error('Ошибка загрузки данных: ' + response.statusText);
+            const errorData = await response.json();
+            if (errorData.error) {
+                alert(errorData.error); 
+            }
+            throw new 
+            Error('Ошибка загрузки данных: ' + response.statusText);
         }
-        dishes = await response.json(); 
-        console.log('Блюда загружены:', dishes);
+        dishes = await response.json();
         displayOrderFromLocalStorage();
     } catch (error) {
         console.error('Ошибка загрузки блюд:', error);
