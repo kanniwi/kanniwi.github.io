@@ -13,13 +13,13 @@ function displayOrderFromLocalStorage() {
     const categories = [
         { key: 'selectedSoup', elementId: 
             'soup-item', headerClass: 'soup-header' },
-        { key: 'selectedMain', elementId: 
+        { key: 'selectedMain-course', elementId: 
             'main-item', headerClass: 'main-header' },
         { key: 'selectedSalad', elementId: 
             'salad-item', headerClass: 'salad-header' },
-        { key: 'selectedBeverage', elementId: 
+        { key: 'selectedDrink', elementId: 
             'beverage-item', headerClass: 'beverage-header' },
-        { key: 'selectedDesserts', elementId: 
+        { key: 'selectedDessert', elementId: 
             'desserts-item', headerClass: 'desserts-header' }
     ];
 

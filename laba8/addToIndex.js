@@ -7,9 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function highlightSelectedDish(dishElement) {
         const selectedSoupId = localStorage.getItem('selectedSoup');
-        const selectedMainId = localStorage.getItem('selectedMain');
-        const selectedBeverageId = localStorage.getItem('selectedBeverage');
-        const selectedDessertsId = localStorage.getItem('selectedDesserts');
+        const selectedMainId = localStorage.getItem('selectedMain-course');
+        const selectedBeverageId = localStorage.getItem('selectedDrink');
+        const selectedDessertsId = localStorage.getItem('selectedDessert');
         const selectedSaladId = localStorage.getItem('selectedSalad');
     
         const selectedIds = [selectedSoupId, selectedMainId, 
@@ -29,52 +29,72 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    function getPreviousDishPrice(category) {
+        const selectedDishId = localStorage.getItem(`selected${category.charAt(0).toUpperCase() + category.slice(1)}`);
+        console.log(selectedDishId);
+        if (selectedDishId) {
+            const previousDish = dishes.find(dish => dish.id == selectedDishId);
+            return previousDish ? previousDish.price : 0;
+        }
+        return 0;
+    }
+
     function addDishToOrder(event) {
         const dishElement = event.target.closest('.dish'); 
         const dishKeyword = dishElement.dataset.dish; 
         const selectedDish = dishes.find(dish => dish.keyword === dishKeyword); 
+        // console.log(localStorage.getItem(`selected${category.charAt(0).toUpperCase() + category.slice(1)}`));
+
         let orderItem;
         let previousDishPrice = 0; 
     
-       
         removeDishHighlight(selectedDish.category);
+
     
+        // Получаем цену предыдущего блюда из localStorage для соответствующей категории
+        
+        previousDishPrice = getPreviousDishPrice(selectedDish.category);
+        // Обновляем localStorage с выбранным блюдом
         if (selectedDish.category === 'soup') {
-            orderItem = selectedSoup;
             selectedSoup = dishElement;
             localStorage.setItem('selectedSoup', selectedSoup.dataset.id);
         } else if (selectedDish.category === 'main-course') {
-            orderItem = selectedMain;
             selectedMain = dishElement;
-            localStorage.setItem('selectedMain', selectedMain.dataset.id);
+            localStorage.setItem('selectedMain-course', selectedMain.dataset.id);
         } else if (selectedDish.category === 'drink') {
-            orderItem = selectedBeverage;
             selectedBeverage = dishElement;
-            localStorage.setItem('selectedBeverage', 
-                selectedBeverage.dataset.id);
+            localStorage.setItem('selectedDrink', selectedBeverage.dataset.id);
         } else if (selectedDish.category === 'dessert') {
-            orderItem = selectedDesserts;
             selectedDesserts = dishElement;
-            localStorage.setItem('selectedDesserts', 
-                selectedDesserts.dataset.id);
+            localStorage.setItem('selectedDessert', selectedDesserts.dataset.id);
         } else if (selectedDish.category === 'salad') {
-            orderItem = selectedSalad;
             selectedSalad = dishElement;
             localStorage.setItem('selectedSalad', selectedSalad.dataset.id);
         }
+        
     
+        // Устанавливаем стиль для выбранного блюда
         dishElement.style.borderColor = 'tomato';  
         dishElement.dataset.price = selectedDish.price;
     
-        if (orderItem !== null) {
-            previousDishPrice = orderItem.price || 0;
-        }
-    
+        // Обновляем итоговую стоимость
         totalCost += (selectedDish.price - previousDishPrice); 
-        document.querySelector('.total-cost').classList.remove('hidden');
-        totalCostElement.innerText = `${totalCost}₽`;  
-    }    
-
+    
+        // Получаем элемент для отображения итоговой стоимости
+        const totalCostElement = document.getElementById('total-cost');
+    
+        // Обновляем значение в span#total-cost
+        totalCostElement.innerText = `${totalCost}₽`; 
+    
+        // Показываем блок с итоговой стоимостью, если цена больше 0
+        const totalCostContainer = document.querySelector('.total-cost');
+        if (totalCost > 0) {
+            totalCostContainer.classList.remove('hidden');
+        } else {
+            totalCostContainer.classList.add('hidden');
+        }
+    }  
+    
 
     function displayDishes() {
         const categories = ["soup", "main-course", "salad", "drink", "dessert"];
@@ -105,6 +125,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 dishElement.addEventListener('click', addDishToOrder);
                 
                 highlightSelectedDish(dishElement);
+                if (totalCost > 0) {
+                    totalCostElement.innerText = `${totalCost}₽`;  
+                    document.querySelector('.total-cost')
+                        .classList.remove('hidden');
+                }
             });
 
         });

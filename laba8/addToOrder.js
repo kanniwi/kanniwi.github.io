@@ -25,26 +25,26 @@ function addDishToOrder(event) {
         orderItem = selectedMain;
         if (selectedMain) {
             selectedMain.style.borderColor = '';
-            localStorage.removeItem('selectedMain');
+            localStorage.removeItem('selectedMain-course');
         }
         selectedMain = dishElement;
-        localStorage.setItem('selectedMain', selectedMain.dataset.id);
+        localStorage.setItem('selectedMain-course', selectedMain.dataset.id);
     } else if (selectedDish.category === 'drink') {
         orderItem = selectedBeverage;
         if (selectedBeverage) {
             selectedBeverage.style.borderColor = '';
-            localStorage.removeItem('selectedBeverage');
+            localStorage.removeItem('selectedDrink');
         }
         selectedBeverage = dishElement;
-        localStorage.setItem('selectedBeverage', selectedBeverage.dataset.id);
+        localStorage.setItem('selectedDrink', selectedBeverage.dataset.id);
     } else if (selectedDish.category === 'dessert') {
         orderItem = selectedDesserts;        
         if (selectedDesserts) {
             selectedDesserts.style.borderColor = '';
-            localStorage.removeItem('selectedDesserts');
+            localStorage.removeItem('selectedDessert');
         }
         selectedDesserts = dishElement;
-        localStorage.setItem('selectedDesserts', selectedDesserts.dataset.id);
+        localStorage.setItem('selectedDessert', selectedDesserts.dataset.id);
     } else if (selectedDish.category === 'salad') {
         orderItem = selectedSalad;        
         if (selectedSalad) {
