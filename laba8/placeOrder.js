@@ -103,4 +103,92 @@ async function loadDishes() {
     }
 }
 
+document.querySelector('form').addEventListener('submit', function (event) {
+    const notification = document.createElement('div');
+    document.body.appendChild(notification);
+    notification.style.position = 'fixed';
+    notification.style.top = '50%';
+    notification.style.left = '50%';
+    notification.style.transform = 'translate(-50%, -50%)';
+    notification.style.backgroundColor = '#fff';
+    notification.style.border = '1px solid #ccc';
+    notification.style.padding = '20px';
+    notification.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+    notification.style.textAlign = 'center';
+
+    const closeNotification = () => {
+        notification.remove();
+    };
+
+    const soupId = localStorage.getItem('selectedSoup');
+    const mainId = localStorage.getItem('selectedMain-course');
+    const saladId = localStorage.getItem('selectedSalad');
+    const beverageId = localStorage.getItem('selectedDrink');
+    const dessertId = localStorage.getItem('selectedDessert');
+
+
+    if (!soupId && !mainId && !saladId && !beverageId && !dessertId) {
+        notification.innerHTML = `
+            <p>Вы не выбрали ни одного блюда.</p>
+            <button id="close-notification">Окей &#128076</button>
+        `;
+        document.getElementById('close-notification')
+            .addEventListener('click', closeNotification);
+        event.preventDefault();
+        return;
+    }
+
+    if (((mainId || (soupId && saladId)) && !beverageId)) {
+        notification.innerHTML = `
+            <p>Выберите напиток</p>
+            <button id="close-notification">Окей &#128076</button>
+        `;
+        document.getElementById('close-notification')
+            .addEventListener('click', closeNotification);
+        event.preventDefault();
+        return;
+    }
+
+    if (soupId && (!saladId && !mainId)) {
+        notification.innerHTML = `
+            <p>Выберите главное блюдо/салат/стартер</p>
+            <button id="close-notification">Окей &#128076</button>
+        `;
+        document.getElementById('close-notification')
+            .addEventListener('click', closeNotification);
+        event.preventDefault();
+        return;
+    }
+
+    if (saladId && (!soupId && !mainId)) {
+        notification.innerHTML = `
+            <p>Выберите суп или главное блюдо</p>
+            <button id="close-notification">Окей &#128076</button>
+        `;
+        document.getElementById('close-notification')
+            .addEventListener('click', closeNotification);
+        event.preventDefault();
+        return;
+    }
+
+    if ((saladId || dessertId) && (!mainId && !soupId)) {
+        notification.innerHTML = `
+            <p>Выберите главное блюдо</p>
+            <button id="close-notification">Окей &#128076</button>
+        `;
+        document.getElementById('close-notification')
+            .addEventListener('click', closeNotification);
+        event.preventDefault();
+        return;
+    }
+
+    // Если все проверки пройдены, сохраняем данные в скрытые поля формы
+    document.getElementById('hidden-soup-keyword').value = soupId || '';
+    document.getElementById('hidden-main-keyword').value = mainId || '';
+    document.getElementById('hidden-salad-keyword').value = saladId || '';
+    document.getElementById('hidden-beverage-keyword').value = beverageId || '';
+    document.getElementById('hidden-dessert-keyword').value = dessertId || '';
+});
+
 loadDishes();
+
