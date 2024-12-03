@@ -60,8 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const dishElement = event.target.closest('.dish'); 
         const dishKeyword = dishElement.dataset.dish; 
         const selectedDish = dishes.find(dish => dish.keyword === dishKeyword); 
-
-        let orderItem;
         let previousDishPrice = 0; 
     
         removeDishHighlight(selectedDish.category);
@@ -144,6 +142,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
         });
     }
+    function filterDishesByKind(category, kind, button) {
+        const dishesInCategory = document
+            .querySelectorAll(`.grid-container.${category} .dish`);
+
+        if (activeFilters[category] === kind) {
+            activeFilters[category] = null;
+            dishesInCategory.forEach(dish => dish.classList.remove('hidden'));
+            button.classList.remove('active-category');
+        } else {
+            activeFilters[category] = kind;
+            dishesInCategory.forEach(dish => {
+                if (dish.dataset.kind === kind) {
+                    dish.classList.remove('hidden');
+                } else {
+                    dish.classList.add('hidden');
+                }
+            });
+            const categoryButtons = button
+                .parentElement.querySelectorAll('button');
+            categoryButtons.forEach(btn => btn.classList
+                .remove('active-category'));
+            button.classList.add('active-category');
+        }
+    }
+
+    const filterButtons = document.querySelectorAll('.menu-category button');
+    filterButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            const selectedKind = event.target.innerText;
+            const kindMap = {
+                "вегетарианское": "veg",
+                "вегетарианский": "veg",
+                "мясное": "meat",
+                "мясной": "meat",
+                "рыбное": "fish",
+                "рыбный": "fish",
+                "холодный": "cold",
+                "горячий": "hot",
+                "маленькая порция": "small",
+                "средняя порция": "average",
+                "большая порция": "big"
+            };
+            const category = event.target.closest('.menu-section')
+                .querySelector('.grid-container').classList[1];
+
+            filterDishesByKind(category, kindMap[selectedKind], event.target);
+        });
+    });
 
     async function loadDishes() {
         try {
