@@ -1,12 +1,13 @@
 const API_URL = "https://edu.std-900.ist.mospolytech.ru/labs/api/dishes"; 
+const API_URL_POST = "https://edu.std-900.ist.mospolytech.ru/labs/api/orders"
 const API_KEY = "7630fae5-737b-4cae-b85d-b7d7c246a48b";
 let dishes = []; 
 
-function removeDishFromOrder(key, dishId) {
+function removeDishFromOrder(key) {
     localStorage.removeItem(key); 
 }
 
-function removeDishFromOrderSection(elementId, dishId) {
+function removeDishFromOrderSection(elementId) {
     const orderItem = document.getElementById(elementId);
     if (orderItem) {
         orderItem.querySelector('.order-item').textContent = '';
@@ -93,10 +94,10 @@ function displayOrderFromLocalStorage() {
                 dishElement.querySelector('.remove-dish-button')
                     .addEventListener('click', function () {
                         removeDishFromOrder(category.key, selectedDish.id);
-                        dishElement.remove(); // удаляем блюдо из DOM
+                        dishElement.remove(); 
                         removeDishFromOrderSection(category.elementId, 
                             selectedDish.id);
-                        updateTotalCost(); // обновляем итоговую стоимость
+                        updateTotalCost(); 
                     });
 
                 // обновляем секцию ваш заказ
@@ -148,98 +149,105 @@ async function loadDishes() {
     }
 }
 
-document.querySelector('form')
-    .addEventListener('submit', async function (event) {
-        event.preventDefault(); 
+document.querySelector('form').addEventListener('submit', async function (event) {
+    event.preventDefault();
 
-        const notification = document.createElement('div');
-        document.body.appendChild(notification);
-        notification.style.position = 'fixed';
-        notification.style.top = '50%';
-        notification.style.left = '50%';
-        notification.style.transform = 'translate(-50%, -50%)';
-        notification.style.backgroundColor = '#fff';
-        notification.style.border = '1px solid #ccc';
-        notification.style.padding = '20px';
-        notification.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
-        notification.style.textAlign = 'center';
+    const notification = document.createElement('div');
+    document.body.appendChild(notification);
+    notification.style.position = 'fixed';
+    notification.style.top = '50%';
+    notification.style.left = '50%';
+    notification.style.transform = 'translate(-50%, -50%)';
+    notification.style.backgroundColor = '#fff';
+    notification.style.border = '1px solid #ccc';
+    notification.style.padding = '20px';
+    notification.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+    notification.style.textAlign = 'center';
 
-        const closeNotification = () => {
-            notification.remove();
-        };
+    const closeNotification = () => {
+        notification.remove();
+    };
+
+    const form = event.target;
+    const formData = new FormData(form);
+
+    const soupId = localStorage.getItem('selectedSoup');
+    const mainId = localStorage.getItem('selectedMain-course');
+    const saladId = localStorage.getItem('selectedSalad');
+    const beverageId = localStorage.getItem('selectedDrink');
+    const dessertId = localStorage.getItem('selectedDessert');
+
+    if (!soupId && !mainId && !saladId && !beverageId && !dessertId) {
+        notification.innerHTML = `
+            <p>Вы не выбрали ни одного блюда.</p>
+            <button id="close-notification">Окей &#128076;</button>
+        `;
+        document.getElementById('close-notification').addEventListener('click', closeNotification);
+        return;
+    }
+
+    if (((mainId || (soupId && saladId)) && !beverageId)) {
+        notification.innerHTML = `
+            <p>Выберите напиток.</p>
+            <button id="close-notification">Окей &#128076;</button>
+        `;
+        document.getElementById('close-notification').addEventListener('click', closeNotification);
+        return;
+    }
 
 
-        const soupId = localStorage.getItem('selectedSoup');
-        const mainId = localStorage.getItem('selectedMain-course');
-        const saladId = localStorage.getItem('selectedSalad');
-        const beverageId = localStorage.getItem('selectedDrink');
-        const dessertId = localStorage.getItem('selectedDessert');
+    if (soupId) formData.append('soup_id', soupId);
+    if (mainId) formData.append('main_course_id', mainId);
+    if (saladId) formData.append('salad_id', saladId);
+    if (beverageId) formData.append('drink_id', beverageId);
+    if (dessertId) formData.append('dessert_id', dessertId);
 
+    
+   
 
-        if (!soupId && !mainId && !saladId && !beverageId && !dessertId) {
-            notification.innerHTML = `
-                <p>Вы не выбрали ни одного блюда.</p>
-                <button id="close-notification">Окей &#128076</button>
-            `;
-            document.getElementById('close-notification')
-                .addEventListener('click', closeNotification);
-            return;  
-        }
-
-
-        if (((mainId || (soupId && saladId)) && !beverageId)) {
-            notification.innerHTML = `
-                <p>Выберите напиток</p>
-                <button id="close-notification">Окей &#128076</button>
-            `;
-            document.getElementById('close-notification')
-                .addEventListener('click', closeNotification);
-            return;  
-        }
-
-        const orderData = {
-            soupId,
-            mainId,
-            saladId,
-            beverageId,
-            dessertId
-        };
-
-        try {
-            const response = await 
-            fetch("https://edu.std-900.ist.mospolytech.ru", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'API-Key': API_KEY
-                },
-                body: JSON.stringify(orderData),
-                mode: 'no-cors'
-            });
-
-            if (response.ok) {
-                const result = await response.json();
-                notification.innerHTML = `
-                    <p>Ваш заказ успешно отправлен!</p>
-                    <button id="close-notification">Окей &#128076</button>
-                `;
-            } else {
-                const errorData = await response.json();
-                notification.innerHTML = `
-                    <p>Ошибка при отправке заказа: ${errorData.error}</p>
-                    <button id="close-notification">Окей &#128076</button>
-                `;
-            }
-        } catch (error) {
-            notification.innerHTML = `
-                <p>Произошла ошибка при отправке заказа. Попробуйте позже.</p>
-                <button id="close-notification">Окей &#128076</button>
-            `;
-        }
-
-        document.getElementById('close-notification')
-            .addEventListener('click', closeNotification);
+    formData.forEach((value, key) => {
+        console.log(`${key}: ${value}`);
     });
+    
+
+    try {
+        const response = await fetch(`${API_URL_POST}?api_key=${API_KEY}`, {
+            method: 'POST',
+            body: formData 
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+
+        
+            localStorage.removeItem('selectedSoup');
+            localStorage.removeItem('selectedMain-course');
+            localStorage.removeItem('selectedSalad');
+            localStorage.removeItem('selectedDrink');
+            localStorage.removeItem('selectedDessert');
+
+            notification.innerHTML = `
+                <p>Ваш заказ успешно отправлен!</p>
+                <button id="close-notification">Окей &#128076;</button>
+            `;
+        } else {
+            const errorData = await response.json();
+            notification.innerHTML = `
+                <p>Ошибка при отправке заказа: ${errorData.error || 'Неизвестная ошибка'}</p>
+                <button id="close-notification">Окей &#128076;</button>
+            `;
+        }
+    } catch (error) {
+        notification.innerHTML = `
+            <p>Произошла ошибка при отправке заказа. Попробуйте позже.</p>
+            <button id="close-notification">Окей &#128076;</button>
+        `;
+    }
+
+    document.getElementById('close-notification').addEventListener('click', closeNotification);
+});
+
+
 
 loadDishes();
 
