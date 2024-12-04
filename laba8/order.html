@@ -64,34 +64,27 @@
         
                 <div class="your-data">
                     <p>Ваши данные</p>
-        
-                    <!-- Имя -->
                     <label for="name">Имя</label>
                     <input type="text" id="name" name="full_name" required>
         
-                    <!-- Email -->
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required>
         
-                    <!-- Подписка на новости -->
                     <div class="choose-group">
                         <input type="checkbox" id="subscribe" name="subscribe" checked>
                         <label for="subscribe">Получать информацию о скидках и акциях</label>
                     </div>
         
-                    <!-- Номер телефона -->
                     <label for="phone">Номер телефона</label>
                     <input type="tel" id="phone" name="phone" required>
         
-                    <!-- Адрес доставки -->
                     <label for="address">Адрес доставки</label>
                     <input type="text" id="address" name="delivery_address" required>
                     <p class="note">Доставка осуществляется только по Москве</p>
         
                     <fieldset>
                         <legend>Время доставки</legend>
-        
-                        <!-- Время доставки (как можно скорее или к определенному времени) -->
+
                         <div>
                             <input type="radio" id="asap" name="delivery_type" value="now" required>
                             <label for="asap">Как можно скорее</label>
@@ -101,14 +94,12 @@
                             <label for="specific-time">К указанному времени</label>
                         </div>
                     </fieldset>
-        
-                    <!-- Время доставки -->
+
                     <label class="time-delivery">Выберете время доставки</label>
                     <input type="time" id="time" name="delivery_time" min="07:00" max="23:00" step="300" value="12:00">
         
                     <p class="note">Доступное время доставки с 7:00 до 23:00</p>
-        
-                    <!-- Комментарий -->
+
                     <label for="comment">Комментарии к заказу</label>
                     <textarea id="comment" name="comment" rows="4"></textarea>
         
