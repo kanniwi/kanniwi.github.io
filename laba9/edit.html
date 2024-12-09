@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>food construct</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="../laba1_style.css">
+        <link rel="stylesheet" href="style_laba4.css">
+        <link rel="stylesheet" href="edit.css">
+    </head>
+<body>
+    <header>
+        <div>
+            <h1>
+                Food Construct
+            </h1>
+            <nav class="main-menu">
+                <ul>
+                    <li><a href="../index.html">О нас</a></li>
+                    <li><a href="/laba9/index.html" >Собрать ланч</a></li>
+                    <li><a href="/laba9/order.html" >Оформить заказ</a></li>
+                    <li class="active"><a href="/laba9/edit.html" >Заказы</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="edit-container">
+            <h2>История заказов</h2>
+            <table class="orders-history">
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Дата оформления</th>
+                        <th>Состав заказа</th>
+                        <th>Стоимость</th>
+                        <th>Время доставки</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div id="order-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Просмотр заказа</h2>
+                <p><strong>Дата оформления:</strong> <span id="order-date"></span></p>
+                <h3>Доставка</h3>
+                <p><strong>Имя получателя:</strong> <span id="customer-name"></span></p>
+                <p><strong>Адрес доставки:</strong> <span id="delivery-address"></span></p>
+                <p><strong>Время доставки:</strong> <span id="delivery-time"></span></p>
+                <p><strong>Телефон:</strong> <span id="customer-phone"></span></p>
+                <p><strong>Email:</strong> <span id="customer-email"></span></p>
+                <h3>Комментарий</h3>
+                <p id="order-comment"></p>
+                <h3>Состав заказа</h3>
+                <p id="order-details"></p>
+                <h3><strong>Стоимость:</strong> <span id="order-total"></span>₽</h3>
+                <button id="close-modal-btn">ОК</button>
+            </div>
+        </div>
+        
+    </main>
+    
+
+    <footer id="contacts">
+        <div class="container">
+            <p>
+                <a>Позвони нам +7-000-000-00-00</a>
+            </p>
+        </div>
+    </footer>
+    <script src="edit.js"></script>
+</body>
+</html>
