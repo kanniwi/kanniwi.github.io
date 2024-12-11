@@ -64,9 +64,12 @@
                 <h3>Состав заказа</h3>
                 <p id="order-details"></p>
                 <h3><strong>Стоимость:</strong> <span id="order-total"></span>₽</h3>
-                <button id="close-modal-btn">ОК</button>
+                <div class="modal-footer">
+                    <button id="close-modal-btn">ОК</button>
+                </div>
             </div>
         </div>
+        
         <div id="edit-order-modal" class="modal hidden">
             <div class="modal-content">
                 <span class="close-modal">&times;</span>
@@ -114,11 +117,24 @@
         
                 <h3><strong>Стоимость:</strong> <span id="edit-order-total"></span>₽</h3>
         
-                <div>
-                    <button type="button" id="save-edit-order">Сохранить изменения</button>
+                <div class="modal-footer-edit">
+                    <button type="button" id="cancel-edit-order">Отмена</button>
+                    <button type="button" id="save-edit-order">Сохранить</button>
                 </div>
             </div>
         </div>
+
+        <div id="delete-confirm-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Удаление заказа</h2>
+                <p>Вы уверены, что хотите удалить заказ?</p>
+                <div class="modal-footer-del">
+                    <button id="cancel-delete-btn">Отмена</button>
+                    <button id="confirm-delete-btn">Да</button>
+                </div>
+            </div>
+        </div>
+        
         
         
         

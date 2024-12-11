@@ -65,22 +65,63 @@ button[title="Удалить"] i::before {
     border-radius: 10px;
     width: 80%;
     max-width: 600px;
-    max-height: 90vh; /* Ограничение максимальной высоты окна */
-    overflow-y: auto; /* Прокрутка, если содержимое выходит за пределы */
+    max-height: 90vh;
+    overflow-y: auto; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    position: relative; /* Убедимся, что крестик будет внутри контейнера */
+    position: relative; 
 }
 
 .close-modal {
     position: absolute; /* Позиционирование относительно .modal-content */
-    top: 10px; /* Отступ сверху */
-    right: 10px; /* Отступ справа */
-    font-size: 30px; /* Размер крестика */
-    color: #333; /* Цвет крестика */
-    cursor: pointer; /* Курсор при наведении */
-    transition: color 0.3s; /* Плавный переход цвета */
+    top: 10px; 
+    right: 10px;
+    font-size: 30px; 
+    color: #333; 
+    cursor: pointer; 
+    transition: color 0.3s; 
 }
 
 .close-modal:hover {
-    color: #f00; /* Цвет крестика при наведении */
+    color: #f00; 
+}
+
+.modal-footer, .modal-footer-edit, .modal-footer-del {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10px; 
+}
+
+.modal-footer button, .modal-footer-edit button, .modal-footer-del button{
+    padding: 10px 20px;
+    background-color:rgb(241,238,233);
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.modal-footer-del button:first-child {
+    background-color: rgb(241,238,233); 
+    color: black;
+}
+
+.modal-footer-del button:last-child {
+    background-color: #dc3545;
+    color: white;
+}
+
+.modal-footer-del button:hover {
+    opacity: 0.9;
+}
+
+.modal-footer-edit button:first-child {
+    background-color: rgb(241,238,233); 
+    color: black;
+}
+
+.modal-footer-edit button:last-child {
+    background-color: green; 
+    color: white;
 }

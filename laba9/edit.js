@@ -127,13 +127,39 @@ function openModal(orderData) {
         .join('<br>');
 
     document.getElementById('order-details').innerHTML = composition || 'Нет данных';
-    document.getElementById('order-total').textContent = `${totalPrice}₽`;
+    document.getElementById('order-total').textContent = `${totalPrice}`;
 
     document.getElementById('order-modal').classList.remove('hidden');
 }
 
 function closeModal() {
     document.getElementById('order-modal').classList.add('hidden');
+}
+
+function openDeleteConfirmModal(orderData, orderIndex) {
+    const modal = document.getElementById('delete-confirm-modal');
+    const confirmButton = document.getElementById('confirm-delete-btn');
+    const cancelButton = document.getElementById('cancel-delete-btn');
+
+    modal.classList.remove('hidden');
+
+    // Удаляем предыдущие обработчики, если они есть
+    confirmButton.onclick = null;
+    cancelButton.onclick = null;
+
+    // Назначаем обработчики для кнопок
+    confirmButton.onclick = async () => {
+        const isDeleted = await deleteOrder(orderData.id);
+        if (isDeleted) {
+            allOrders.splice(orderIndex, 1);
+            populateOrderTable(allOrders);
+        }
+        modal.classList.add('hidden');
+    };
+
+    cancelButton.onclick = () => {
+        modal.classList.add('hidden');
+    };
 }
 
 function openEditModal(orderData, orderIndex) {
@@ -208,7 +234,7 @@ function closeEditModal() {
 
 async function updateOrder(orderId, updatedOrderData) {
     try {
-        const response = await fetch(`${API_URL}/${orderId}?api_key=${API_KEY}`, { // Ключ добавляется в URL
+        const response = await fetch(`${API_URL}/${orderId}?api_key=${API_KEY}`, { 
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -288,37 +314,31 @@ async function loadAllOrders() {
     populateOrderTable(allOrders);
 }
 
-// Инициализация событий
+
 function initializeEventListeners() {
     document.getElementById('close-modal-btn').addEventListener('click', closeModal);
     document.querySelector('.close-modal').addEventListener('click', closeModal);
 
     document.querySelector('#edit-order-modal .close-modal').addEventListener('click', closeEditModal);
+    document.querySelector('#cancel-edit-order').addEventListener('click', closeEditModal);
 
 
     document.querySelector('.orders-history').addEventListener('click', (event) => {
         const editButton = event.target.closest('button[title="Редактировать"]');
         const viewButton = event.target.closest('.icon-eye');
         const deleteButton = event.target.closest('button[title="Удалить"]');
-
+    
         const row = event.target.closest('tr');
         if (!row) return;
         const orderIndex = Number(row.querySelector('td:first-child').textContent) - 1;
         const orderData = allOrders[orderIndex];
-
+    
         if (editButton) {
             openEditModal(orderData, orderIndex);
         } else if (viewButton) {
             openModal(orderData);
         } else if (deleteButton && orderData) {
-            if (confirm(`Вы уверены, что хотите удалить заказ №${orderIndex + 1}?`)) {
-                deleteOrder(orderData.id).then(isDeleted => {
-                    if (isDeleted) {
-                        allOrders.splice(orderIndex, 1);
-                        populateOrderTable(allOrders);
-                    }
-                });
-            }
+            openDeleteConfirmModal(orderData, orderIndex);
         }
     });
 }
