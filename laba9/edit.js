@@ -143,11 +143,9 @@ function openDeleteConfirmModal(orderData, orderIndex) {
 
     modal.classList.remove('hidden');
 
-    // Удаляем предыдущие обработчики, если они есть
     confirmButton.onclick = null;
     cancelButton.onclick = null;
 
-    // Назначаем обработчики для кнопок
     confirmButton.onclick = async () => {
         const isDeleted = await deleteOrder(orderData.id);
         if (isDeleted) {
@@ -165,7 +163,6 @@ function openDeleteConfirmModal(orderData, orderIndex) {
 function openEditModal(orderData, orderIndex) {
     const editModal = document.getElementById('edit-order-modal');
 
-    // Установка значений в поля ввода для редактирования
     document.getElementById('edit-customer-name-input').value = orderData.full_name || '';
     document.getElementById('edit-delivery-address-input').value = orderData.delivery_address || '';
     document.getElementById('edit-delivery-type-asap').checked = !orderData.delivery_time;
@@ -175,7 +172,6 @@ function openEditModal(orderData, orderIndex) {
     document.getElementById('edit-customer-email-input').value = orderData.email || '';
     document.getElementById('edit-order-comment-input').value = orderData.comment || '';
 
-    // Установка состава заказа и стоимости
     const categories = [
         { label: 'Суп', id: 'soup_id' },
         { label: 'Основное блюдо', id: 'main_course_id' },
@@ -200,10 +196,10 @@ function openEditModal(orderData, orderIndex) {
     document.getElementById('edit-order-details').innerHTML = composition || 'Нет данных';
     document.getElementById('edit-order-total').textContent = `${totalPrice}`;
 
-    // Показываем модальное окно
+  
     editModal.classList.remove('hidden');
 
-    // Сохраняем изменения
+
     document.getElementById('save-edit-order').onclick = async function () {
         const updatedOrder = {
             ...orderData,
@@ -272,7 +268,7 @@ async function deleteOrder(orderId) {
             return false;
         }
 
-        console.log(`Заказ с ID ${orderId} успешно удален.`);
+        // console.log(`Заказ с ID ${orderId} успешно удален.`);
         return true;
     } catch (error) {
         console.error('Ошибка при удалении заказа:', error);
