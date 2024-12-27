@@ -1,0 +1,127 @@
+.edit-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+table.orders-history {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table.orders-history th, table.orders-history td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table.orders-history th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+table.orders-history tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table.orders-history tr:hover {
+    background-color: #f1f1f1;
+}
+
+button[title="Просмотреть"] i::before {
+    content: "👁️";
+}
+
+button[title="Редактировать"] i::before {
+    content: "✏️";
+}
+
+button[title="Удалить"] i::before {
+    content: "🗑️";
+}
+
+.hidden {
+    display: none;
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative; 
+}
+
+.close-modal {
+    position: absolute; /* Позиционирование относительно .modal-content */
+    top: 10px; 
+    right: 10px;
+    font-size: 30px; 
+    color: #333; 
+    cursor: pointer; 
+    transition: color 0.3s; 
+}
+
+.close-modal:hover {
+    color: #f00; 
+}
+
+.modal-footer, .modal-footer-edit, .modal-footer-del {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10px; 
+}
+
+.modal-footer button, .modal-footer-edit button, .modal-footer-del button{
+    padding: 10px 20px;
+    background-color:rgb(241,238,233);
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.modal-footer-del button:first-child {
+    background-color: rgb(241,238,233); 
+    color: black;
+}
+
+.modal-footer-del button:last-child {
+    background-color: #dc3545;
+    color: white;
+}
+
+.modal-footer-del button:hover {
+    opacity: 0.9;
+}
+
+.modal-footer-edit button:first-child {
+    background-color: rgb(241,238,233); 
+    color: black;
+}
+
+.modal-footer-edit button:last-child {
+    background-color: green; 
+    color: white;
+}

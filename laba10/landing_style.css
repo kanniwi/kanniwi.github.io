@@ -1,0 +1,133 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.hero {
+    background: url('../images/la.jpg') no-repeat center center;
+    background-size: cover;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    height: 400px;
+    display: flex; 
+    align-items: flex-end; 
+    justify-content: flex-end; 
+}
+
+.hero h1, .hero p {
+    color: #ffffff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); 
+    margin: 0; 
+}
+
+.hero p {
+    padding-bottom: 70px;
+}
+
+.advantages {
+    height: 350px;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+}
+
+#features .col-md-4 {
+    padding: 20px;
+    transition: transform 0.3s;
+}
+#features .col-md-4:hover {
+    transform: scale(1.05);
+}
+#features i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: black;
+}
+
+
+.bg-light {
+    background-color: #efefef !important;
+    padding: 50px 0;
+}
+.bg-light h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.btn-success {
+    padding: 15px 30px;
+    font-size: 1.25rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
+    background-color: black;
+
+}
+.btn-success:hover {
+    background-color: #5d5d5d;
+    transform: translateY(-3px);
+}
+
+.cta {
+    height: 250px;
+}
+
+.forma {
+    flex-grow: 1; 
+    margin-bottom: 50px; 
+}
+
+
+.contacts {
+    width: 100%;
+    padding: 20px 0;  
+    color: rgb(142, 142, 142);
+    margin-top: 30px; 
+    margin-bottom: 0;
+}
+
+.contacts .container {
+    max-width: 1000px;  /* Ограничиваем ширину контейнера */
+}
+
+/* Вспомогательные стили для формы и кнопки */
+#contact form input, #contact form textarea {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+#contact form button {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#contact form button:hover {
+    background-color: #999999;
+    transform: translateY(-2px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .hero p {
+        font-size: 1.25rem;
+    }
+    #features i {
+        font-size: 2.5rem;
+    }
+}
+
